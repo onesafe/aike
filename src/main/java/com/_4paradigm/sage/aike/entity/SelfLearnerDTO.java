@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SelfLearnerDTO {
-    private String sdkServerUrl;
-    private String accessKey;
-    private Integer workSpaceID;
+    private Long dagID;
 
-    // 模型组所在的空间
-    private String nameSpace;
     // 方案名称
     private String solutionName;
 
+    private String solutionDescribe;
 
+    private String outputModelGroupName;
+
+    private RunStrategy runStrategy;
 }

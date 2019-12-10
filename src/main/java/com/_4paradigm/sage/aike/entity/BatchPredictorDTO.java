@@ -6,20 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Created by wangyiping on 2019/12/9 4:27 PM.
+ * Created by wangyiping on 2019/12/10 4:11 PM.
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SelfLearnerDTO {
+public class BatchPredictorDTO {
     private Long dagID;
 
     private String solutionName;
 
     private String solutionDescribe;
 
-    private String outputModelGroupName;
+    private String outputTableGroupName;
 
     private RunStrategy runStrategy;
 }

@@ -4,6 +4,8 @@ import com._4paradigm.sage.aike.entity.DagDMO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by wangyiping on 2019/12/9 6:24 PM.
  */
@@ -26,4 +28,12 @@ public interface DagMapper {
 
     @Delete("delete from dag where id=#{id}")
     void delete(@Param("id") Long id);
+
+
+    @Select("select id, dag_name, dag_content from dag")
+    @Results({
+            @Result(property = "dagName", column = "dag_name"),
+            @Result(property = "dagContent", column = "dag_content")
+    })
+    List<DagDMO> list();
 }

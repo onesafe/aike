@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wangyiping on 2019/12/9 4:39 PM.
@@ -57,6 +59,30 @@ public class DagController {
 
             Response<DagDTO> res = new Response<>();
             res.setData(dagDTO);
+            res.setCode(StatusCodes.OK);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Response<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<Response<List<DagDTO>>> listDag() {
+        try {
+            List<DagDMO> dagDMOS = dagMapper.list();
+
+            List<DagDTO> dagDTOS = new ArrayList<>();
+
+            for (DagDMO dagDMO : dagDMOS) {
+                DagDTO dagDTO = new DagDTO();
+                dagDTO.setDagName(dagDMO.getDagName());
+                dagDTO.setId(dagDMO.getId());
+                dagDTOS.add(dagDTO);
+            }
+
+            Response<List<DagDTO>> res = new Response<>();
+
+            res.setData(dagDTOS);
             res.setCode(StatusCodes.OK);
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
